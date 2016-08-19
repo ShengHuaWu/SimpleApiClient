@@ -11,6 +11,7 @@
 		9B2D41071D66D78800E4B8FD /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2D41041D66D78700E4B8FD /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B2D41081D66D78800E4B8FD /* JSONParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2D41051D66D78700E4B8FD /* JSONParser.framework */; };
 		9B2D41091D66D78800E4B8FD /* JSONParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2D41051D66D78700E4B8FD /* JSONParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9B2D410E1D66F83D00E4B8FD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D410D1D66F83D00E4B8FD /* Endpoint.swift */; };
 		9B97BA081D66A0AC002F3448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BA071D66A0AC002F3448 /* AppDelegate.swift */; };
 		9B97BA0A1D66A0AC002F3448 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BA091D66A0AC002F3448 /* ViewController.swift */; };
 		9B97BA0D1D66A0AC002F3448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BA0B1D66A0AC002F3448 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		9B2D41041D66D78700E4B8FD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		9B2D41051D66D78700E4B8FD /* JSONParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONParser.framework; path = Carthage/Build/iOS/JSONParser.framework; sourceTree = "<group>"; };
+		9B2D410D1D66F83D00E4B8FD /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		9B97BA041D66A0AC002F3448 /* SimpleApiClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleApiClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B97BA071D66A0AC002F3448 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B97BA091D66A0AC002F3448 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				9B97BA0E1D66A0AC002F3448 /* Assets.xcassets */,
 				9B97BA101D66A0AC002F3448 /* LaunchScreen.storyboard */,
 				9B97BA131D66A0AC002F3448 /* Info.plist */,
+				9B2D410D1D66F83D00E4B8FD /* Endpoint.swift */,
 			);
 			path = SimpleApiClient;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B97BA0A1D66A0AC002F3448 /* ViewController.swift in Sources */,
+				9B2D410E1D66F83D00E4B8FD /* Endpoint.swift in Sources */,
 				9B97BA081D66A0AC002F3448 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BASE_URL = www.development.com;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -392,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BASE_URL = www.production.com;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

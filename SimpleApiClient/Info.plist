@@ -34,5 +34,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>Base url</key>
+	<string>${BASE_URL}</string>
 </dict>
 </plist>
