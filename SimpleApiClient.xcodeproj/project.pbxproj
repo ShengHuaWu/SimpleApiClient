@@ -17,6 +17,9 @@
 		9B97BA0D1D66A0AC002F3448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BA0B1D66A0AC002F3448 /* Main.storyboard */; };
 		9B97BA0F1D66A0AC002F3448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BA0E1D66A0AC002F3448 /* Assets.xcassets */; };
 		9B97BA121D66A0AC002F3448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BA101D66A0AC002F3448 /* LaunchScreen.storyboard */; };
+		9BC32F981D6AA03600FA27CC /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F971D6AA03600FA27CC /* Api.swift */; };
+		9BC32F9A1D6AAD7B00FA27CC /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */; };
+		9BC32F9C1D6AAE4500FA27CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F9B1D6AAE4500FA27CC /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		9B97BA131D66A0AC002F3448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B97BA181D66A0AC002F3448 /* SimpleApiClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleApiClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B97BA1E1D66A0AC002F3448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BC32F971D6AA03600FA27CC /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
+		9BC32F9B1D6AAE4500FA27CC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,9 @@
 				9B97BA101D66A0AC002F3448 /* LaunchScreen.storyboard */,
 				9B97BA131D66A0AC002F3448 /* Info.plist */,
 				9B2D410D1D66F83D00E4B8FD /* Endpoint.swift */,
+				9BC32F971D6AA03600FA27CC /* Api.swift */,
+				9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */,
+				9BC32F9B1D6AAE4500FA27CC /* User.swift */,
 			);
 			path = SimpleApiClient;
 			sourceTree = "<group>";
@@ -253,6 +262,9 @@
 			files = (
 				9B97BA0A1D66A0AC002F3448 /* ViewController.swift in Sources */,
 				9B2D410E1D66F83D00E4B8FD /* Endpoint.swift in Sources */,
+				9BC32F9C1D6AAE4500FA27CC /* User.swift in Sources */,
+				9BC32F9A1D6AAD7B00FA27CC /* ApiResult.swift in Sources */,
+				9BC32F981D6AA03600FA27CC /* Api.swift in Sources */,
 				9B97BA081D66A0AC002F3448 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ enum Endpoint {
     case GetUserInfo(userId: String)
     case UpdateUserInfo(userId: String)
     
+    // MARK: - Public Properties
     var method: Alamofire.Method {
         switch self {
         case .GetUserInfo:
@@ -26,9 +27,9 @@ enum Endpoint {
         let baseUrl = NSURL.getBaseUrl()
         switch self {
         case .GetUserInfo(let userId):
-            return baseUrl.URLByAppendingPathComponent("/user/\(userId)")
+            return baseUrl.URLByAppendingPathComponent("user/\(userId)")
         case .UpdateUserInfo(let userId):
-            return baseUrl.URLByAppendingPathComponent("/user/\(userId)")
+            return baseUrl.URLByAppendingPathComponent("user/\(userId)")
         }
     }
 }
