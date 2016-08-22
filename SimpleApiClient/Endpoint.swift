@@ -18,7 +18,7 @@ enum Endpoint {
         case .GetUserInfo:
             return .GET
         case .UpdateUserInfo:
-            return .POST
+            return .PUT
         }
     }
     
