@@ -26,9 +26,9 @@ enum Endpoint {
         let baseUrl = NSURL.getBaseUrl()
         switch self {
         case .GetUserInfo(let userId):
-            return baseUrl.URLByAppendingPathComponent(userId)
+            return baseUrl.URLByAppendingPathComponent("/user/\(userId)")
         case .UpdateUserInfo(let userId):
-            return baseUrl.URLByAppendingPathComponent(userId)
+            return baseUrl.URLByAppendingPathComponent("/user/\(userId)")
         }
     }
 }
