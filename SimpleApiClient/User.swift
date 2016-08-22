@@ -23,4 +23,13 @@ extension User {
         email = json["email"].stringValue
         description = json["description"].string
     }
+    
+    func toParameters() -> [String : AnyObject] {
+        var parameters = ["userId" : userId, "name" : name, "email" : email]
+        if let description = description {
+            parameters["description"] = description
+        }
+        
+        return parameters
+    }
 }

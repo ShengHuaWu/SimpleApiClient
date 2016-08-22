@@ -18,6 +18,31 @@ final class Api {
     init(manager: Alamofire.Manager = Alamofire.Manager.sharedInstance) {
         self.manager = manager
     }
+    
+    // MARK: - Public Methods
+    func getUserInfo(userId: String, completion: ApiResult<User> -> Void) {
+        manager.apiRequest(.GetUserInfo(userId: userId)).apiResponse { response in
+            switch response.result {
+            case .Success(let json):
+                let user = User(json: json["data"])
+                completion(ApiResult{ return user })
+            case .Failure(let error):
+                completion(ApiResult{ throw error })
+            }
+        }
+    }
+    
+    func updateUserInfo(user: User, completion: ApiResult<User> -> Void) {
+        manager.apiRequest(.UpdateUserInfo(userId: user.userId), parameters: user.toParameters()).apiResponse { response in
+            switch response.result {
+            case .Success(let json):
+                let user = User(json: json["data"])
+                completion(ApiResult{ return user })
+            case .Failure(let error):
+                completion(ApiResult{ throw error })
+            }
+        }
+    }
 }
 
 private func += <K, V> (inout left: [K : V], right: [K : V]) {
