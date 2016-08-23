@@ -17,6 +17,8 @@
 		9B97BA0D1D66A0AC002F3448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BA0B1D66A0AC002F3448 /* Main.storyboard */; };
 		9B97BA0F1D66A0AC002F3448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BA0E1D66A0AC002F3448 /* Assets.xcassets */; };
 		9B97BA121D66A0AC002F3448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BA101D66A0AC002F3448 /* LaunchScreen.storyboard */; };
+		9BBDFFA91D6C29AF00FA4895 /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDFFA81D6C29AF00FA4895 /* ApiTests.swift */; };
+		9BBDFFAD1D6C2EB600FA4895 /* ApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDFFAC1D6C2EB600FA4895 /* ApiProtocol.swift */; };
 		9BC32F981D6AA03600FA27CC /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F971D6AA03600FA27CC /* Api.swift */; };
 		9BC32F9A1D6AAD7B00FA27CC /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */; };
 		9BC32F9C1D6AAE4500FA27CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F9B1D6AAE4500FA27CC /* User.swift */; };
@@ -60,6 +62,8 @@
 		9B97BA131D66A0AC002F3448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B97BA181D66A0AC002F3448 /* SimpleApiClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleApiClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B97BA1E1D66A0AC002F3448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BBDFFA81D6C29AF00FA4895 /* ApiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
+		9BBDFFAC1D6C2EB600FA4895 /* ApiProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiProtocol.swift; sourceTree = "<group>"; };
 		9BC32F971D6AA03600FA27CC /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
 		9BC32F9B1D6AAE4500FA27CC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				9BC32F971D6AA03600FA27CC /* Api.swift */,
 				9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */,
 				9BC32F9B1D6AAE4500FA27CC /* User.swift */,
+				9BBDFFAC1D6C2EB600FA4895 /* ApiProtocol.swift */,
 			);
 			path = SimpleApiClient;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				9B97BA1E1D66A0AC002F3448 /* Info.plist */,
+				9BBDFFA81D6C29AF00FA4895 /* ApiTests.swift */,
 			);
 			path = SimpleApiClientTests;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BBDFFAD1D6C2EB600FA4895 /* ApiProtocol.swift in Sources */,
 				9B97BA0A1D66A0AC002F3448 /* ViewController.swift in Sources */,
 				9B2D410E1D66F83D00E4B8FD /* Endpoint.swift in Sources */,
 				9BC32F9C1D6AAE4500FA27CC /* User.swift in Sources */,
@@ -273,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BBDFFA91D6C29AF00FA4895 /* ApiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,10 +433,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SimpleApiClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.SimpleApiClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleApiClient.app/SimpleApiClient";
 			};
 			name = Debug;
@@ -437,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SimpleApiClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.SimpleApiClientTests;
