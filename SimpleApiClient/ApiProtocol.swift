@@ -25,7 +25,7 @@ extension ApiManagerProtocol {
 }
 
 protocol ApiRequestProtocol {
-    func apiResponse(completionHandler: Alamofire.Response<JSON, NSError> -> Void) -> Self
+    func apiResponse(completionHandler: Response<JSON, NSError> -> Void) -> Self
 }
 
 func += <K, V> (inout left: [K : V], right: [K : V]) {
@@ -34,7 +34,7 @@ func += <K, V> (inout left: [K : V], right: [K : V]) {
     }
 }
 
-extension Alamofire.Manager: ApiManagerProtocol {
+extension Manager: ApiManagerProtocol {
     func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]? = nil, headers: [String : String]? = nil) -> ApiRequestProtocol {
         // Insert your common headers here, for example, authorization token or accept.
         var commonHeaders = ["Accept" : "application/json"]
@@ -46,9 +46,9 @@ extension Alamofire.Manager: ApiManagerProtocol {
     }
 }
 
-extension Alamofire.Request: ApiRequestProtocol {
-    static func apiResponseSerializer() -> Alamofire.ResponseSerializer<JSON, NSError> {
-        return Alamofire.ResponseSerializer { _, _, data, error in
+extension Request: ApiRequestProtocol {
+    static func apiResponseSerializer() -> ResponseSerializer<JSON, NSError> {
+        return ResponseSerializer { _, _, data, error in
             if let error = error {
                 return .Failure(error)
             }
@@ -68,7 +68,7 @@ extension Alamofire.Request: ApiRequestProtocol {
         }
     }
     
-    static func sanitizeError(json: JSON) -> Alamofire.Result<JSON, NSError> {
+    static func sanitizeError(json: JSON) -> Result<JSON, NSError> {
         if json["error"].object == nil {
             return .Success(json)
         }
@@ -79,7 +79,7 @@ extension Alamofire.Request: ApiRequestProtocol {
         return .Failure(error)
     }
     
-    func apiResponse(completionHandler: Alamofire.Response<JSON, NSError> -> Void) -> Self {
-        return response(responseSerializer: Alamofire.Request.apiResponseSerializer(), completionHandler: completionHandler)
+    func apiResponse(completionHandler: Response<JSON, NSError> -> Void) -> Self {
+        return response(responseSerializer: Request.apiResponseSerializer(), completionHandler: completionHandler)
     }
 }

@@ -39,7 +39,7 @@ private extension NSURL {
         guard let info = NSBundle.mainBundle().infoDictionary,
             let urlString = info["Base url"] as? String,
             let url = NSURL(string: urlString) else {
-            fatalError("cannot get base url from info.plist")
+            fatalError("Cannot get base url from info.plist")
         }
         
         return url

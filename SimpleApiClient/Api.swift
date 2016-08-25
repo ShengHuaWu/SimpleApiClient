@@ -15,7 +15,7 @@ final class Api {
     private let manager: ApiManagerProtocol
     
     // MARK: - Designated Initializer
-    init(manager: ApiManagerProtocol = Alamofire.Manager.sharedInstance) {
+    init(manager: ApiManagerProtocol = Manager.sharedInstance) {
         self.manager = manager
     }
     
