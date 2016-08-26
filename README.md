@@ -1,5 +1,7 @@
 ## Simple iOS API client with Alamofire
-Most of the iOS applications have to communicate with their backend servers, in order to manipulate their data. My purpose is to implement a simple API client example with [_Alamofire_](https://github.com/Alamofire/Alamofire) , which is a very famous Swift third party library. In this article, I will create one endpoint with two different HTTP methods, and show how to take the advantage of _Alamofire_ to send HTTP requests.  Please note that this article adopts Swift 2.2, Xcode 7.3 and Alamofire 3.4.1.
+Most of the iOS applications have to communicate with their backend servers, in order to manipulate their data. My purpose is to implement a simple API client example with [_Alamofire_](https://github.com/Alamofire/Alamofire) , which is a very famous Swift third party library. In this article, I will create one endpoint with two different HTTP methods, and show how to take the advantage of Alamofire to send HTTP requests. I will demonstrate how to write unit tests for our API client in the end of this article as well.
+
+This article is designed for developers who are familiar with iOS networking layer and Alamofire. Furthermore, please note that this article adopts Swift 2.2, Xcode 7.3 and Alamofire 3.4.1.
 
 ### Implementation
 #### Endpoint
@@ -63,7 +65,7 @@ extension User {
 ```
 
 #### Extensions
-Before writing our API class, we should customize _Alamofire_ _Manager_ and _Request_ to fit our usage.
+Before writing our API class, we should customize Alamofire _Manager_ and _Request_ to fit our usage.
 ```
 extension Manager {
     func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]? = nil, headers: [String : String]? = nil) -> Request {
@@ -77,7 +79,7 @@ extension Manager {
     }
 }
 ```
-We write an extension of _Alamofire_ _Manager_ at first, and it contains a method which uses our endpoint to generate an _Alamofire_ _Request_.
+We write an extension of Alamofire Manager at first, and it contains a method which uses our endpoint to generate an Alamofire Request.
 
 ```
 extension Request {
@@ -118,7 +120,7 @@ extension Request {
     }
 }
 ```
-What we do here is to create a custom response serializer of _Alamofire_ _Request_, and sanitize error with the server response JSON data.
+What we do here is to create a custom response serializer of Alamofire Request, and sanitize error with the server response JSON data.
 
 #### API class
 There is still one thing to do before writing our API class, and we should create a generic Swift enum to represent the result of our API.
@@ -189,7 +191,7 @@ Although I'm not familiar with TDD, it's still important to write unit tests for
 
 #### Protocols
 Perhaps the simplest way to test our API class is by letting it access the network. The request could hit an endpoint on the server. Then we can assure that the response is parsed into valid User model objects. While easy to set up, this approach has a few downsides.
-First, the tests will take much longer to run. If we have a poor network connection they will take even longer. Asynchronous tests are also not reliable. The more tests we have the higher the likelihood one or more will fail randomly. Since Swift is protocol-oriented programming, I would like to use protocols to make _Alamofire_ _Manager_ and _Request_ testable. Let's create two protocols as following.
+First, the tests will take much longer to run. If we have a poor network connection they will take even longer. Asynchronous tests are also not reliable. The more tests we have the higher the likelihood one or more will fail randomly. Since Swift is protocol-oriented programming, I would like to use protocols to make Alamofire Manager and Request testable. Let's create two protocols as following.
 ```
 protocol ApiManagerProtocol {
     func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]?, headers: [String : String]?) -> ApiRequestProtocol
@@ -413,4 +415,6 @@ Here’s the [final version of the project](https://github.com/ShengHuaWu/Simple
 ### Future Works
 1. It might be better to create our custom ErrorType enum, instead of just using NSError.
 2. There's no retry mechanism yet.
-3. It's possible to replace _Alamofire_ with NSURLSession.
+3. It's possible to replace Alamofire with NSURLSession.
+
+I'm totally open to discussion and feedback, so please share your thoughts.
