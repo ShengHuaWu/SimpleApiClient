@@ -15,7 +15,7 @@ final class Api {
     private let manager: ApiManagerProtocol
     
     // MARK: - Designated Initializer
-    init(manager: ApiManagerProtocol = Manager.sharedInstance) {
+    init(manager: ApiManagerProtocol = Configuration.manager) {
         self.manager = manager
     }
     
@@ -42,5 +42,15 @@ final class Api {
                 completion(ApiResult{ throw error })
             }
         }
+    }
+}
+
+struct Configuration {
+    static var manager: ApiManagerProtocol {
+        return isUITesing() ? SeededManager() : Manager.sharedInstance
+    }
+    
+    private static func isUITesing() -> Bool {
+        return NSProcessInfo.processInfo().arguments.contains("UI Testing")
     }
 }

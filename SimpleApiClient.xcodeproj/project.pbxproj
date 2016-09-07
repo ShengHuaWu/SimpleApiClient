@@ -25,11 +25,21 @@
 		9BC32F981D6AA03600FA27CC /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F971D6AA03600FA27CC /* Api.swift */; };
 		9BC32F9A1D6AAD7B00FA27CC /* ApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */; };
 		9BC32F9C1D6AAE4500FA27CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC32F9B1D6AAE4500FA27CC /* User.swift */; };
+		9BC7A5FB1D7FB80600A75C6A /* SimpleApiClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A5FA1D7FB80600A75C6A /* SimpleApiClientUITests.swift */; };
+		9BC7A6031D7FB8B900A75C6A /* SeededManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A6021D7FB8B900A75C6A /* SeededManager.swift */; };
+		9BC7A6061D7FB94A00A75C6A /* SeededRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A6051D7FB94A00A75C6A /* SeededRequest.swift */; };
 		9BD2E5B71D6E92A900D8F9DA /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2E5B61D6E92A900D8F9DA /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		9B97BA191D66A0AC002F3448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B97B9FC1D66A0AC002F3448 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B97BA031D66A0AC002F3448;
+			remoteInfo = SimpleApiClient;
+		};
+		9BC7A5FD1D7FB80600A75C6A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9B97B9FC1D66A0AC002F3448 /* Project object */;
 			proxyType = 1;
@@ -72,6 +82,11 @@
 		9BC32F971D6AA03600FA27CC /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiResult.swift; sourceTree = "<group>"; };
 		9BC32F9B1D6AAE4500FA27CC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9BC7A5F81D7FB80600A75C6A /* SimpleApiClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleApiClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BC7A5FA1D7FB80600A75C6A /* SimpleApiClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleApiClientUITests.swift; sourceTree = "<group>"; };
+		9BC7A5FC1D7FB80600A75C6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BC7A6021D7FB8B900A75C6A /* SeededManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeededManager.swift; path = Seeded/SeededManager.swift; sourceTree = "<group>"; };
+		9BC7A6051D7FB94A00A75C6A /* SeededRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeededRequest.swift; path = Seeded/SeededRequest.swift; sourceTree = "<group>"; };
 		9BD2E5B61D6E92A900D8F9DA /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +109,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9BC7A5F51D7FB80600A75C6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,9 +131,10 @@
 		9B97B9FB1D66A0AC002F3448 = {
 			isa = PBXGroup;
 			children = (
-				9B2D410B1D66D79200E4B8FD /* Frameworks */,
 				9B97BA061D66A0AC002F3448 /* SimpleApiClient */,
 				9B97BA1B1D66A0AC002F3448 /* SimpleApiClientTests */,
+				9BC7A5F91D7FB80600A75C6A /* SimpleApiClientUITests */,
+				9B2D410B1D66D79200E4B8FD /* Frameworks */,
 				9B97BA051D66A0AC002F3448 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,6 +144,7 @@
 			children = (
 				9B97BA041D66A0AC002F3448 /* SimpleApiClient.app */,
 				9B97BA181D66A0AC002F3448 /* SimpleApiClientTests.xctest */,
+				9BC7A5F81D7FB80600A75C6A /* SimpleApiClientUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +163,7 @@
 				9BC32F991D6AAD7B00FA27CC /* ApiResult.swift */,
 				9BC32F9B1D6AAE4500FA27CC /* User.swift */,
 				9BBDFFAC1D6C2EB600FA4895 /* ApiProtocol.swift */,
+				9BC7A6041D7FB8BE00A75C6A /* Seeded */,
 			);
 			path = SimpleApiClient;
 			sourceTree = "<group>";
@@ -152,6 +177,24 @@
 				9BD2E5B61D6E92A900D8F9DA /* Utility.swift */,
 			);
 			path = SimpleApiClientTests;
+			sourceTree = "<group>";
+		};
+		9BC7A5F91D7FB80600A75C6A /* SimpleApiClientUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9BC7A5FA1D7FB80600A75C6A /* SimpleApiClientUITests.swift */,
+				9BC7A5FC1D7FB80600A75C6A /* Info.plist */,
+			);
+			path = SimpleApiClientUITests;
+			sourceTree = "<group>";
+		};
+		9BC7A6041D7FB8BE00A75C6A /* Seeded */ = {
+			isa = PBXGroup;
+			children = (
+				9BC7A6021D7FB8B900A75C6A /* SeededManager.swift */,
+				9BC7A6051D7FB94A00A75C6A /* SeededRequest.swift */,
+			);
+			name = Seeded;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +237,24 @@
 			productReference = 9B97BA181D66A0AC002F3448 /* SimpleApiClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9BC7A5F71D7FB80600A75C6A /* SimpleApiClientUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BC7A6011D7FB80600A75C6A /* Build configuration list for PBXNativeTarget "SimpleApiClientUITests" */;
+			buildPhases = (
+				9BC7A5F41D7FB80600A75C6A /* Sources */,
+				9BC7A5F51D7FB80600A75C6A /* Frameworks */,
+				9BC7A5F61D7FB80600A75C6A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9BC7A5FE1D7FB80600A75C6A /* PBXTargetDependency */,
+			);
+			name = SimpleApiClientUITests;
+			productName = SimpleApiClientUITests;
+			productReference = 9BC7A5F81D7FB80600A75C6A /* SimpleApiClientUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -208,6 +269,10 @@
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					9B97BA171D66A0AC002F3448 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 9B97BA031D66A0AC002F3448;
+					};
+					9BC7A5F71D7FB80600A75C6A = {
 						CreatedOnToolsVersion = 7.3.1;
 						TestTargetID = 9B97BA031D66A0AC002F3448;
 					};
@@ -228,6 +293,7 @@
 			targets = (
 				9B97BA031D66A0AC002F3448 /* SimpleApiClient */,
 				9B97BA171D66A0AC002F3448 /* SimpleApiClientTests */,
+				9BC7A5F71D7FB80600A75C6A /* SimpleApiClientUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,6 +310,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9B97BA161D66A0AC002F3448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BC7A5F61D7FB80600A75C6A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,6 +352,8 @@
 				9BBDFFAD1D6C2EB600FA4895 /* ApiProtocol.swift in Sources */,
 				9B97BA0A1D66A0AC002F3448 /* ViewController.swift in Sources */,
 				9B2D410E1D66F83D00E4B8FD /* Endpoint.swift in Sources */,
+				9BC7A6061D7FB94A00A75C6A /* SeededRequest.swift in Sources */,
+				9BC7A6031D7FB8B900A75C6A /* SeededManager.swift in Sources */,
 				9BC32F9C1D6AAE4500FA27CC /* User.swift in Sources */,
 				9BC32F9A1D6AAD7B00FA27CC /* ApiResult.swift in Sources */,
 				9BC32F981D6AA03600FA27CC /* Api.swift in Sources */,
@@ -296,6 +371,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9BC7A5F41D7FB80600A75C6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BC7A5FB1D7FB80600A75C6A /* SimpleApiClientUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -303,6 +386,11 @@
 			isa = PBXTargetDependency;
 			target = 9B97BA031D66A0AC002F3448 /* SimpleApiClient */;
 			targetProxy = 9B97BA191D66A0AC002F3448 /* PBXContainerItemProxy */;
+		};
+		9BC7A5FE1D7FB80600A75C6A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B97BA031D66A0AC002F3448 /* SimpleApiClient */;
+			targetProxy = 9BC7A5FD1D7FB80600A75C6A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -476,6 +564,28 @@
 			};
 			name = Release;
 		};
+		9BC7A5FF1D7FB80600A75C6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SimpleApiClientUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.SimpleApiClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SimpleApiClient;
+			};
+			name = Debug;
+		};
+		9BC7A6001D7FB80600A75C6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SimpleApiClientUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shenghuawu.SimpleApiClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SimpleApiClient;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -505,6 +615,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9BC7A6011D7FB80600A75C6A /* Build configuration list for PBXNativeTarget "SimpleApiClientUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BC7A5FF1D7FB80600A75C6A /* Debug */,
+				9BC7A6001D7FB80600A75C6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
