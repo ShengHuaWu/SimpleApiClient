@@ -9,7 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private let api = Api()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        api.getUserInfo("plokmijn") { result in
+            do {
+                let _ = try result.unwrap()
+                self.view.backgroundColor = UIColor.redColor()
+            } catch let error as NSError {
+                debugPrint("Get user error: \(error.localizedDescription)")
+            }
+        }
     }
 }
