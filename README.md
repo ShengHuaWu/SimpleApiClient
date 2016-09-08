@@ -315,7 +315,7 @@ class MockRequest: ApiRequestProtocol {
 }
 ```
 
-#### Writing tests
+#### Writing Tests
 Finally, we can write some tests for our API class.
 ```
 class ApiTests: XCTestCase {
@@ -418,3 +418,92 @@ Here’s the [final version of the project](https://github.com/ShengHuaWu/Simple
 3. It's possible to replace Alamofire with NSURLSession.
 
 I'm totally open to discussion and feedback, so please share your thoughts.
+
+## Seed API Data for UI Test
+When Xcode 7 was released, Apple introduced a new feature --- [UI testing](https://developer.apple.com/videos/play/wwdc2015/406/), and it allows developers to write UI tests in _Swift_ instead of Javascript. However, most of the iOS applications involve network connectivity, and UI tests with real network access will dramatically reduce the speed of these tests. Furthermore, the unreliability of the network might also make these tests non-deterministic. Recently I found out how to write [UI tests with stubbed network data](http://masilotti.com/ui-testing-stub-network-data/), and it really increases the speed of UI tests. If you are using _NSURLSession_ in your codebase, I recommend you take a look at that [series](http://masilotti.com/testing-nsurlsession-input/).
+This article is an expansion of my previous article [simple iOS API client with Alamofire](https://medium.com/@shenghuawu/simple-ios-api-client-with-alamofire-cfb2cadf6c11#.v61z0vqiy). If you haven't already read my previous article, I suggest you should read it beforehand. To recap, I mentioned how to create a simple API client with Alamofire and how to write unit tests for the API client. In this article, I will introduce how to set API data for UI tests.
+Please note that this article adopts Swift 2.2 and Xcode 7.3.
+
+### Where to Insert Seed Data
+Let's take a look at _XCUIApplication_'s properties `launchArguments` and `lauchEnvironment` at first. If we assign values to these properties before invoking `launch` method, we're able to retrieve the values from _NSProcessInfo_'s `arguments` and `environment` properties respectively. Thus, we can take the advantages of these properties to pass our testing data to our application during UI testing.
+
+### Implementation
+Before actually setting our testing data, we need to create _SeededManager_ and _SeededRequest_ classes that conform _ApiManagerProtocol_ and _ApiRequestProtocol_ protocols respectively.
+```
+final class SeededManager: ApiManagerProtocol {
+    func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]?, headers: [String : String]?) -> ApiRequestProtocol {
+        return SeededRequest(url: endpoint.url)
+    }
+}
+
+final class SeededRequest: ApiRequestProtocol {
+    private let url: NSURL
+
+    init(url: NSURL) {
+        self.url = url
+    }
+
+    func apiResponse(completionHandler: Response<JSON, NSError> -> Void) -> Self {
+        guard let jsonString = NSProcessInfo.processInfo().environment[url.absoluteString],
+            let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) else {
+            fatalError("Testing URL is undefined.")
+        }
+
+        do {
+            let json = try JSON(data: data)
+            let result: Result<JSON, NSError> = .Success(json)
+            let response = Response(request: nil, response: nil, data: nil, result: result)
+            completionHandler(response)
+        } catch {
+            fatalError("Cannot parse seeded data.")
+        }
+
+        return self
+    }
+}
+```
+In SeededRequest, we retrieve the testing data from NSProcessInfo's `environment` property and invoke the completionHandler.
+After implementing these two classes, we need to inject the SeededManager into our _Api_ class. Therefore, we create another struct called _Configuration_ as an injector.
+```
+struct Configuration {
+    static var manager: ApiManagerProtocol {
+        return isUITesing() ? SeededManager() : Manager.sharedInstance
+    }
+
+    private static func isUITesing() -> Bool {
+        return NSProcessInfo.processInfo().arguments.contains("UI Testing")
+    }
+}
+
+final class Api {
+    init(manager: ApiManagerProtocol = Configuration.manager) {
+        self.manager = manager
+    }
+    ...
+}
+```
+We also create a static method `isUITesting` to find out if we're actually doing UI testing by check the value in NSProcessInfo's `arguments` property.
+Finally, we can set the JSON response of our API in UI tests.
+```
+class SimpleApiClientUITests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+
+        let application = XCUIApplication()
+        application.launchArguments.append("UI Testing")
+
+        let parameters = ["userId" : "plokmijn",
+                          "name" : "shane wu",
+                          "email" : "shane.wu@gmail.com",
+                          "description" : "I'm shane wu"]
+        let data = try! NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonString = String(data: data, encoding: NSUTF8StringEncoding)
+        application.launchEnvironment["http://localhost:3000/user/plokmijn"] = jsonString
+        application.launch()
+    }
+    ...
+}
+```
+
+### Conclusion
+Frankly speaking, automating UI testing isn't a handy task because you need to tap and drag at your app’s UI to trigger changes, and you need to be able to check if these changes are correct. However, it's still important to test common workflows and demo sequences by UI testing. With seeding API data, UI tests can be run faster and cover many scenarios. Any comment and feedback are welcome, so please share your thoughts.
