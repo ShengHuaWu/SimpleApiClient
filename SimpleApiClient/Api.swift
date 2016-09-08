@@ -47,10 +47,10 @@ final class Api {
 
 struct Configuration {
     static var manager: ApiManagerProtocol {
-        return isUITesing() ? SeededManager() : Manager.sharedInstance
+        return isUITesting() ? SeededManager() : Manager.sharedInstance
     }
     
-    private static func isUITesing() -> Bool {
+    private static func isUITesting() -> Bool {
         return NSProcessInfo.processInfo().arguments.contains("UI Testing")
     }
 }
