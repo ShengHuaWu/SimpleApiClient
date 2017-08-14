@@ -35,7 +35,7 @@ enum Endpoint {
 We create one endpoint with two different HTTP methods here. One is used to get the user information from the backend server, and the other is used to update the user information.
 
 #### User Model
-Our API should return the user information as the result. In order to parse the response JSON data, we create a User model type as following. I use my own [_JSON_ _Parser_](https://github.com/ShengHuaWu/JSONParser) component in this project.
+Our API should return the user information as the result. In order to parse the response JSON data, we create a User model type as following. (I used my own JSONParser component in this project, but that is removed. Therefore, please choose [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) for Swift 3, or _Codable_ protocol for Swift 4.)
 
 ```
 struct User {
