@@ -6,7 +6,7 @@ This article is designed for developers who are familiar with iOS networking lay
 ### Implementation
 #### Endpoint
 Let's get started with our endpoint, and it's appropriate to present our endpoint with Swift enum.
-```
+```swift
 enum Endpoint {
     case GetUserInfo(userId: String)
     case UpdateUserInfo(userId: String)
@@ -37,7 +37,7 @@ We create one endpoint with two different HTTP methods here. One is used to get 
 #### User Model
 Our API should return the user information as the result. In order to parse the response JSON data, we create a User model type as following. (I used my own JSONParser component in this project, but that is removed. Therefore, please choose [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) for Swift 3, or _Codable_ protocol for Swift 4.)
 
-```
+```swift
 struct User {
     let userId: String
     var name: String
@@ -66,7 +66,7 @@ extension User {
 
 #### Extensions
 Before writing our API class, we should customize Alamofire _Manager_ and _Request_ to fit our usage.
-```
+```swift
 extension Manager {
     func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]? = nil, headers: [String : String]? = nil) -> Request {
         // Insert your common headers here, for example, authorization token or accept.
@@ -81,7 +81,7 @@ extension Manager {
 ```
 We write an extension of Alamofire Manager at first, and it contains a method which uses our endpoint to generate an Alamofire Request.
 
-```
+```swift
 extension Request {
     static func apiResponseSerializer() -> ResponseSerializer<JSON, NSError> {
         return ResponseSerializer { _, _, data, error in
@@ -124,7 +124,7 @@ What we do here is to create a custom response serializer of Alamofire Request, 
 
 #### API class
 There is still one thing to do before writing our API class, and we should create a generic Swift enum to represent the result of our API.
-```
+```swift
 enum ApiResult<Value> {
     case Success(value: Value)
     case Failure(error: NSError)
@@ -149,7 +149,7 @@ enum ApiResult<Value> {
 }
 ```
 Finally, let's write our API class.
-```
+```swift
 final class Api {
     // MARK: - Private Properties
     private let manager: Manager
@@ -192,7 +192,7 @@ Although I'm not familiar with TDD, it's still important to write unit tests for
 #### Protocols
 Perhaps the simplest way to test our API class is by letting it access the network. The request could hit an endpoint on the server. Then we can assure that the response is parsed into valid User model objects. While easy to set up, this approach has a few downsides.
 First, the tests will take much longer to run. If we have a poor network connection they will take even longer. Asynchronous tests are also not reliable. The more tests we have the higher the likelihood one or more will fail randomly. Since Swift is protocol-oriented programming, I would like to use protocols to make Alamofire Manager and Request testable. Let's create two protocols as following.
-```
+```swift
 protocol ApiManagerProtocol {
     func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]?, headers: [String : String]?) -> ApiRequestProtocol
 }
@@ -202,7 +202,7 @@ protocol ApiRequestProtocol {
 }
 ```
 Then rewrite the previous extensions of _Manage_ and _Request_, in order to conform these protocols respectively.
-```
+```swift
 extension Manager: ApiManagerProtocol {
     func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]? = nil, headers: [String : String]? = nil) -> ApiRequestProtocol {
         // Insert your common headers here, for example, authorization token or accept.
@@ -254,7 +254,7 @@ extension Request: ApiRequestProtocol {
 }
 ```
 For our convenience, add the following extension for _ApiManagerProtocol_.
-```
+```swift
 extension ApiManagerProtocol {
     func apiRequest(endpoint: Endpoint) -> ApiRequestProtocol {
         return apiRequest(endpoint, parameters: nil, headers: nil)
@@ -266,7 +266,7 @@ extension ApiManagerProtocol {
 }
 ```
 Furthermore, change the type of our API class's property to be _ApiManagerProtocol_.
-```
+```swift
 final class Api {
     // MARK: - Private Properties
     private let manager: ApiManagerProtocol
@@ -281,7 +281,7 @@ final class Api {
 
 #### Mock Objects
 Now we're able to create lightweight mock objects with these protocols in our test target.
-```
+```swift
 class MockManager: ApiManagerProtocol {
     var expectedRequest: MockRequest?
 
@@ -317,7 +317,7 @@ class MockRequest: ApiRequestProtocol {
 
 #### Writing Tests
 Finally, we can write some tests for our API class.
-```
+```swift
 class ApiTests: XCTestCase {
     // MARK: - Private Properties
     private var api: Api!
@@ -431,7 +431,7 @@ Let's take a look at _XCUIApplication_'s properties `launchArguments` and `lauch
 
 ### Implementation
 Before actually setting our testing data, we need to create _SeededManager_ and _SeededRequest_ classes that conform _ApiManagerProtocol_ and _ApiRequestProtocol_ protocols respectively.
-```
+```swift
 final class SeededManager: ApiManagerProtocol {
     func apiRequest(endpoint: Endpoint, parameters: [String : AnyObject]?, headers: [String : String]?) -> ApiRequestProtocol {
         return SeededRequest(url: endpoint.url)
@@ -467,7 +467,7 @@ final class SeededRequest: ApiRequestProtocol {
 In SeededRequest, we retrieve the testing data from NSProcessInfo's `environment` property and invoke the completionHandler.
 
 After implementing these two classes, we need to inject the SeededManager into our _Api_ class. Therefore, we create another struct called _Configuration_ as an injector.
-```
+```swift
 struct Configuration {
     static var manager: ApiManagerProtocol {
         return isUITesing() ? SeededManager() : Manager.sharedInstance
@@ -488,7 +488,7 @@ final class Api {
 We also create a static method `isUITesting` to find out if we're actually doing UI testing by check the value in NSProcessInfo's `arguments` property.
 
 Finally, we can set the JSON response of our API in UI tests.
-```
+```swift
 class SimpleApiClientUITests: XCTestCase {
     override func setUp() {
         super.setUp()
